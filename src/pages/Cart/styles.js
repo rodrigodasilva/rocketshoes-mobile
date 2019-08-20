@@ -3,18 +3,43 @@ import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   background: #191920;
-  height: 100%;
   padding: 20px;
+  flex: 1;
 `;
 
-export const Cart = styled.View`
+export const CartContainer = styled.View`
   min-height: 200px;
-  width: 100%;
   background: #fff;
   border-radius: 4px;
   padding: 15px;
+  max-height: 100%;
+`;
+
+export const CartEmpty = styled.View`
   display: flex;
   align-items: center;
+`;
+
+export const EmptyText = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+  margin-top: 10px;
+  margin-bottom: 30px;
+`;
+
+export const EmptyButton = styled(RectButton)`
+  background: #7159c1;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 20px;
+`;
+
+export const EmptyButtonText = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
 `;
 
 export const ItemCard = styled.View`
@@ -65,6 +90,8 @@ export const ItemAmount = styled.View`
   width: 100px;
 `;
 
+export const Button = styled.TouchableOpacity``;
+
 export const Amount = styled.TextInput.attrs({
   readonly: true,
 })`
@@ -81,6 +108,11 @@ export const Amount = styled.TextInput.attrs({
 export const ItemSubtotal = styled.Text`
   font-size: 16px;
   font-weight: bold;
+`;
+
+export const Checkout = styled.View`
+  /* display: flex; */
+  align-items: center;
 `;
 
 export const TotalText = styled.Text`

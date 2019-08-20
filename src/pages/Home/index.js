@@ -5,6 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as CartActions from '../../store/modules/cart/actions';
 
+import { formatPrice } from '../../util/format';
 import api from '../../services/api';
 
 import {
@@ -29,7 +30,13 @@ class Home extends Component {
 
   async componentDidMount() {
     const response = await api.get('products');
-    this.setState({ products: response.data });
+
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
+
+    this.setState({ products: data });
   }
 
   handleAddProduct = id => {
@@ -46,7 +53,7 @@ class Home extends Component {
       <ProductItem key={item.id}>
         <ProductImage source={{ uri: item.image }} />
         <ProductTitle>{item.title} </ProductTitle>
-        <ProductPrice>{item.price} </ProductPrice>
+        <ProductPrice>{item.priceFormatted} </ProductPrice>
         <AddToCart onPress={() => this.handleAddProduct(item.id)}>
           <CartInfo>
             <Icon name="add-shopping-cart" size={16} color="#fff" />

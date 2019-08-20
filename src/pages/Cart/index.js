@@ -1,9 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as CartActions from '../../store/modules/cart/actions';
+import { formatPrice } from '../../util/format';
 
 import {
   Container,
-  Cart,
+  CartContainer,
+  CartEmpty,
+  EmptyText,
+  EmptyButton,
+  EmptyButtonText,
   ItemCard,
   ItemInfo,
   ItemImage,
@@ -12,72 +21,114 @@ import {
   ItemTitle,
   SubTotal,
   ItemAmount,
+  Button,
   Amount,
   ItemSubtotal,
+  Checkout,
   TotalText,
   TotalPrice,
   ButtonBuy,
   TextButton,
 } from './styles';
 
-export default function Home() {
+function Cart({
+  navigation,
+  cart,
+  total,
+  removeFromCart,
+  updateAmountRequest,
+}) {
+  function decrement(product) {
+    updateAmountRequest(product.id, product.amount - 1);
+  }
+
+  function increment(product) {
+    updateAmountRequest(product.id, product.amount + 1);
+  }
+
   return (
     <Container>
-      <Cart>
-        <ItemCard>
-          <ItemInfo>
-            <ItemImage
-              source={{
-                uri:
-                  'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-              }}
+      <CartContainer>
+        {!cart.length ? (
+          <CartEmpty>
+            <Icon name="remove-shopping-cart" size={44} color="#7159c1" />
+            <EmptyText>Carrinho vazio</EmptyText>
+            <EmptyButton onPress={() => navigation.navigate('Home')}>
+              <EmptyButtonText>Comece a comprar</EmptyButtonText>
+            </EmptyButton>
+          </CartEmpty>
+        ) : (
+          <>
+            <FlatList
+              data={cart}
+              extraData={this.props}
+              keyExtractor={item => String(item.id)}
+              renderItem={({ item: product }) => (
+                <ItemCard>
+                  <ItemInfo>
+                    <ItemImage source={{ uri: product.image }} />
+                    <ItemDescription>
+                      <ItemTitle>{product.title}</ItemTitle>
+                      <ItemPrice>{product.price}</ItemPrice>
+                    </ItemDescription>
+                    <Button onPress={() => removeFromCart(product.id)}>
+                      <Icon name="delete-forever" size={24} color="#7159c1" />
+                    </Button>
+                  </ItemInfo>
+                  <SubTotal>
+                    <ItemAmount>
+                      <Button onPress={() => decrement(product)}>
+                        <Icon
+                          name="remove-circle-outline"
+                          size={20}
+                          color="#7159c1"
+                        />
+                      </Button>
+                      <Amount value={String(product.amount)} />
+                      <Button onPress={() => increment(product)}>
+                        <Icon
+                          name="add-circle-outline"
+                          size={20}
+                          color="#7159c1"
+                        />
+                      </Button>
+                    </ItemAmount>
+                    <ItemSubtotal>{product.subtotal}</ItemSubtotal>
+                  </SubTotal>
+                </ItemCard>
+              )}
             />
-            <ItemDescription>
-              <ItemTitle>Tenis de caminhada leve e confortavel</ItemTitle>
-              <ItemPrice>179,90</ItemPrice>
-            </ItemDescription>
-            <Icon name="delete-forever" size={24} color="#7159c1" />
-          </ItemInfo>
-          <SubTotal>
-            <ItemAmount>
-              <Icon name="add-circle-outline" size={20} color="#7159c1" />
-              <Amount value="1" />
-              <Icon name="remove-circle-outline" size={20} color="#7159c1" />
-            </ItemAmount>
-            <ItemSubtotal>R$ 359,09</ItemSubtotal>
-          </SubTotal>
-        </ItemCard>
 
-        <ItemCard>
-          <ItemInfo>
-            <ItemImage
-              source={{
-                uri:
-                  'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-              }}
-            />
-            <ItemDescription>
-              <ItemTitle>Tenis de caminhada leve e confortavel</ItemTitle>
-              <ItemPrice>179,90</ItemPrice>
-            </ItemDescription>
-            <Icon name="delete-forever" size={24} color="#7159c1" />
-          </ItemInfo>
-          <SubTotal>
-            <ItemAmount>
-              <Icon name="add-circle-outline" size={20} color="#7159c1" />
-              <Amount value="1" />
-              <Icon name="remove-circle-outline" size={20} color="#7159c1" />
-            </ItemAmount>
-            <ItemSubtotal>R$ 359,09</ItemSubtotal>
-          </SubTotal>
-        </ItemCard>
-
-        <TotalText>Total</TotalText>
-        <TotalPrice>R$ 1220,00</TotalPrice>
-        <ButtonBuy type="button">
-          <TextButton>Finalizar Pedido</TextButton>
-        </ButtonBuy>
-      </Cart>
+            <Checkout>
+              <TotalText>Total</TotalText>
+              <TotalPrice>{total}</TotalPrice>
+              <ButtonBuy type="button">
+                <TextButton>Finalizar Pedido</TextButton>
+              </ButtonBuy>
+            </Checkout>
+          </>
+        )}
+      </CartContainer>
     </Container>
   );
 }
+
+const mapStateToProps = state => ({
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);
