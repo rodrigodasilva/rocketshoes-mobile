@@ -9,6 +9,7 @@ import { formatPrice } from '../../util/format';
 import api from '../../services/api';
 
 import {
+  Loading,
   Container,
   ProductItem,
   ProductImage,
@@ -25,6 +26,7 @@ class Home extends Component {
     super(props);
     this.state = {
       products: [],
+      loading: true,
     };
   }
 
@@ -36,7 +38,8 @@ class Home extends Component {
       priceFormatted: formatPrice(product.price),
     }));
 
-    this.setState({ products: data });
+    this.setState({ products: data, loading: false });
+    // setTimeout(() => this.setState({ visible: true }), 2000);
   }
 
   handleAddProduct = id => {
@@ -66,18 +69,24 @@ class Home extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    const { products, loading } = this.state;
 
     return (
-      <Container>
-        <FlatList
-          horizontal
-          data={products}
-          extraData={this.props}
-          keyExtractor={item => String(item.id)}
-          renderItem={this.renderProduct}
-        />
-      </Container>
+      <>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Container>
+            <FlatList
+              // horizontal
+              data={products}
+              extraData={this.props}
+              keyExtractor={item => String(item.id)}
+              renderItem={this.renderProduct}
+            />
+          </Container>
+        )}
+      </>
     );
   }
 }

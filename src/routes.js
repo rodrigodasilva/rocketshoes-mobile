@@ -6,6 +6,8 @@ import Cart from './pages/Cart';
 
 import Header from './components/Header';
 
+import transitionConfig from './util/transitionConfig';
+
 const Routes = createAppContainer(
   createStackNavigator(
     {
@@ -16,6 +18,7 @@ const Routes = createAppContainer(
       defaultNavigationOptions: navigation => ({
         header: <Header {...navigation} />,
       }),
+      transitionConfig,
     }
   )
 );

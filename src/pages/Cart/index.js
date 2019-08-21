@@ -51,8 +51,8 @@ function Cart({
       <CartContainer>
         {!cart.length ? (
           <CartEmpty>
-            <Icon name="remove-shopping-cart" size={44} color="#7159c1" />
-            <EmptyText>Carrinho vazio</EmptyText>
+            <Icon name="remove-shopping-cart" size={44} color="#eee" />
+            <EmptyText>Seu carrinho esta vazio</EmptyText>
             <EmptyButton onPress={() => navigation.navigate('Home')}>
               <EmptyButtonText>Comece a comprar</EmptyButtonText>
             </EmptyButton>

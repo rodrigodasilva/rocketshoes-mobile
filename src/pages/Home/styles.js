@@ -1,21 +1,31 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
+export const Loading = styled.View`
+  background: #7159c1;
+  height: 100%;
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+`;
+
 export const Container = styled.View`
   background: #191920;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
+  align-items: center;
+  padding: 0 20px;
 `;
 
 export const ProductItem = styled.View`
   display: flex;
   background: #fff;
-  width: 220px;
+  /* width: 220px; */
   height: 358px;
   border-radius: 4px;
   margin: 10px;
-  padding: 10px;
+  padding: 15px;
 `;
 
 export const ProductImage = styled.Image`
@@ -41,7 +51,6 @@ export const AddToCart = styled(RectButton)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0;
   width: 100%;
   height: 42px;
   margin-top: auto;
