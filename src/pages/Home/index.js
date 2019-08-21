@@ -49,9 +49,6 @@ class Home extends Component {
 
   renderProduct = ({ item }) => {
     const { amount } = this.props;
-
-    // console.tron.log(amount);
-
     return (
       <ProductItem key={item.id}>
         <ProductImage source={{ uri: item.image }} />

@@ -69,7 +69,7 @@ function Cart({
                     <ItemImage source={{ uri: product.image }} />
                     <ItemDescription>
                       <ItemTitle>{product.title}</ItemTitle>
-                      <ItemPrice>{product.price}</ItemPrice>
+                      <ItemPrice>{product.priceFormatted}</ItemPrice>
                     </ItemDescription>
                     <Button onPress={() => removeFromCart(product.id)}>
                       <Icon name="delete-forever" size={24} color="#7159c1" />

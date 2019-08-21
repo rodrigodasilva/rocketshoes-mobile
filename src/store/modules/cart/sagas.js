@@ -32,7 +32,6 @@ function* addToCart({ id }) {
       ...response.data,
       amount: 1,
       priceFormatted: formatPrice(response.data.price),
-      // priceFormatted: response.data.price,
     };
 
     yield put(addToCartSuccess(data));
