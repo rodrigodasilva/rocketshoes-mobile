@@ -3,7 +3,7 @@ import { call, select, put, all, takeLatest } from 'redux-saga/effects';
 import NavigationService from '../../../services/navigation';
 
 import api from '../../../services/api';
-// import { formatPrice } from '../../../util/format';
+import { formatPrice } from '../../../util/format';
 
 import { addToCartSuccess, updateAmountSuccess } from './actions';
 
@@ -31,8 +31,8 @@ function* addToCart({ id }) {
     const data = {
       ...response.data,
       amount: 1,
-      // priceFormatted: formatPrice(response.data.price),
-      priceFormatted: response.data.price,
+      priceFormatted: formatPrice(response.data.price),
+      // priceFormatted: response.data.price,
     };
 
     yield put(addToCartSuccess(data));
@@ -47,7 +47,6 @@ function* updateAmount({ id, amount }) {
   const stockAmount = stock.data.amount;
 
   if (amount > stockAmount) {
-    // toast.error('Quantidade solicitada fora de estoque');
     Alert.alert('Quantidade solicitada fora de estoque');
     return;
   }

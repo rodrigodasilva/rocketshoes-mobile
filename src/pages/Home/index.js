@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ActivityIndicator } from 'react-native';
 import * as CartActions from '../../store/modules/cart/actions';
 
 import { formatPrice } from '../../util/format';
@@ -10,6 +11,7 @@ import api from '../../services/api';
 
 import {
   Container,
+  Loading,
   ProductItem,
   ProductImage,
   ProductTitle,
@@ -38,7 +40,6 @@ class Home extends Component {
     }));
 
     this.setState({ products: data, loading: false });
-    // setTimeout(() => this.setState({ visible: true }), 2000);
   }
 
   handleAddProduct = id => {
@@ -68,17 +69,23 @@ class Home extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    const { products, loading } = this.state;
 
     return (
       <Container>
-        <FlatList
-          // horizontal
-          data={products}
-          extraData={this.props}
-          keyExtractor={item => String(item.id)}
-          renderItem={this.renderProduct}
-        />
+        {loading ? (
+          <Loading>
+            <ActivityIndicator color="#7159c1" size={50} />
+          </Loading>
+        ) : (
+          <FlatList
+            // horizontal
+            data={products}
+            extraData={this.props}
+            keyExtractor={item => String(item.id)}
+            renderItem={this.renderProduct}
+          />
+        )}
       </Container>
     );
   }

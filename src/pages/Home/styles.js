@@ -2,11 +2,10 @@ import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Loading = styled.View`
-  background: #7159c1;
   height: 100%;
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
+  justify-content: center;
 `;
 
 export const Container = styled.View`

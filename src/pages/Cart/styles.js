@@ -45,6 +45,7 @@ export const EmptyButtonText = styled.Text`
 export const ItemCard = styled.View`
   width: 100%;
   margin-bottom: 20px;
+  padding: 0 20px;
 `;
 
 export const ItemInfo = styled.View`
