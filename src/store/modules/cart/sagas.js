@@ -53,9 +53,6 @@ function* updateAmount({ id, amount }) {
   yield put(updateAmountSuccess(id, amount));
 }
 
-/**
- * Ficamos ouvindo as 'actions' atraves do metodo 'takeLatest'
- */
 export default all([
   takeLatest('@cart/ADD_REQUEST', addToCart),
   takeLatest('@cart/UPDATE_AMOUNT_REQUEST', updateAmount),

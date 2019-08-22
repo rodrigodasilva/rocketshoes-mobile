@@ -10,7 +10,6 @@ const sagaMiddleware = createSagaMiddleware({
   sagaMonitor,
 });
 
-// Verificamos se estamos em ambiente de desenvolvimento
 const enhancer = __DEV__
   ? compose(
       console.tron.createEnhancer(),
