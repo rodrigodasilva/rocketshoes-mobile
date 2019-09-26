@@ -1,47 +1,62 @@
-## [Desafio 7](https://github.com/Rocketseat/bootcamp-gostack-desafio-07/blob/master/README.md) realizado durante o Bootcamp da Rocketseat
+<h1 align="center">
 
-### Tecnologias
+<img src="src/assets/images/logo-circle.png" width="200">
+<br />
+RocketShoes Mobile
 
-Algumas das tecnologias utilizadas neste projeto:
+</h1>
 
-- ReactJS
-- Redux
-- Redux-Saga
-- Reactotron
-- React Navigation
-- Axios
-- Immer
-- styled-components
-- react-native-vector-icons
+<p align="center">
+  <a href="#tecnologias-utilizadas">Tecnologias utilizadas</a> |
+  <a href="#como-usar">Como Usar</a> |
+  <a href="#funcionalidades">Funcionalidades</a>
 
-### Como usar
+</p>
 
-Requisitos
+<div align="center">
 
-- Git (opcional, o repositório pode ser baixado manualmente)
-- Node ou Yarn
-- Emulador para android ou Iphone configurado
+![](src/assets/example.gif)
 
-Iniciando
+</div>
 
-> git clone https://github.com/rodrigodasilva/desafio07-react-native-redux-saga
+Esta aplicação foi desenvolvida durante o [Desafio 7](https://github.com/Rocketseat/bootcamp-gostack-desafio-07/blob/master/README.md) do Bootcamp da Rocketseat para fixação dos conceitos de Hooks e da arquitetura Flux.
+Para tanto, criamos este app em React-native que chamamos de Rocketshoes, nele o usuário tem a opção de adicionar e remover produtos ao carrinho, simulando assim, uma das funcionalidades de uma loja virtual.
 
-Acesse a pasta
+## Tecnologias utilizadas
 
-> cd desafio07-react-native-redux-saga
+- [axios](https://github.com/axios/axios)
+- [numeral](http://numeraljs.com/)
+- [immer](https://github.com/immerjs/immer)
+- [prop-types](https://github.com/facebook/prop-types)
+- [react](https://github.com/facebook/react)
+- [react-native](https://github.com/facebook/react-native)
+- [react-native-gesture-handler](https://github.com/kmagiera/react-native-gesture-handler)
+- [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
+- [react-navigation](https://github.com/react-navigation/react-navigation)
+- [react-redux](https://github.com/reduxjs/react-redux)
+- [reactotron-react-native](https://github.com/infinitered/reactotron-react-native)
+- [reactotron-redux](https://github.com/infinitered/reactotron-redux)
+- [reactotron-redux-saga](https://github.com/infinitered/reactotron-redux-saga)
+- [redux](https://github.com/reduxjs/redux)
+- [redux-saga](https://github.com/redux-saga/redux-saga)
+- [styled-components](https://github.com/styled-components/styled-components)
 
-Instale as dependências
+## Como usar
 
-> yarn
+Pré-requisitos:
 
-Inicie o Metro Bundler
+- Yarn/Npm
+- Emulador configurado para o react-native
 
-> react-native start
-
-Rode o app no Android
+Tendo isso, rodamos o aplicativo
 
 > react-native run-android
 
-Rode o app no IOS
+Ou, no emulador do iphone
 
 > react-native run-ios
+
+## Funcionalidades
+
+- Adicionar/Remover produtos ao carrinho
+- Alterar quantidade do produtos no carrinho
