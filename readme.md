@@ -1,21 +1,21 @@
+<div align="center">
+  <img src="src/assets/images/logo-circle.png" width="200">
+  <br />
+</div>
+
 <h1 align="center">
-
-<img src="src/assets/images/logo-circle.png" width="200">
-<br />
 RocketShoes Mobile
-
 </h1>
 
 <p align="center">
   <a href="#tecnologias-utilizadas">Tecnologias utilizadas</a> |
   <a href="#como-usar">Como Usar</a> |
   <a href="#funcionalidades">Funcionalidades</a>
-
 </p>
 
 <div align="center">
 
-![](src/assets/example.gif)
+<img src="src/assets/example.gif" height="500">
 
 </div>
 
